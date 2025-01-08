@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامعة الزقازيق الأهلية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px;
+            font-size: 22px;
+        }
+
+        .form-container, .result-container {
+            width: 90%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* إخفاء النتيجة افتراضيًا */
+        }
+
+        .form-container.active {
+            display: block; /* إظهار النموذج */
+        }
+
+        .result-container.active {
+            display: block; /* إظهار النتيجة */
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #003f8a;
+        }
+
+        .result-container {
+            text-align: center;
+        }
+
+        .info-box {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">جامعة الزقازيق الأهلية</div>
+
+    <!-- النموذج -->
+    <div class="form-container active" id="form">
+        <input type="text" id="national-id" placeholder="الرقم القومي">
+        <input type="text" id="student-code" placeholder="كود الطالب">
+        <button onclick="checkData()">نتيجة الطالب</button>
+    </div>
+
+    <!-- النتيجة -->
+    <div class="result-container" id="result">
+        <div class="info-box">
+            <p><strong>الاسم:</strong> محمود مصطفى قرني أحمد</p>
+            <p><strong>الكود:</strong> 27912023100061</p>
+            <p><strong>الرقم القومي:</strong> 30407142200171</p>
+            <p><strong>المستوى:</strong> الثاني</p>
+            <p><strong>الفصل الدراسي:</strong> الأول</p>
+            <p><strong>القسم / الشعبة:</strong> محاسبة</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>كود المقرر</th>
+                    <th>اسم المقرر</th>
+                    <th>عظمى</th>
+                    <th>صغرى</th>
+                    <th>ساعات</th>
+                    <th>نقاط</th>
+                    <th>درجة</th>
+                    <th>التقدير</th>
+                    <th>ناجح</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AC122</td>
+                    <td>المال والبنوك</td>
+                    <td>100</td>
+                    <td>50</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>96</td>
+                    <td>ممتاز</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>MM121</td>
+                    <td>محاسبة حكومية وقومية</td>
+                    <td>100</td>
+                    <td>50</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>99</td>
+                    <td>ممتاز</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>SD123</td>
+                    <td>مبادئ الإحصاء</td>
+                    <td>100</td>
+                    <td>50</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>95</td>
+                    <td>ممتاز</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>EC112</td>
+                    <td>إدارة التسويق</td>
+                    <td>100</td>
+                    <td>50</td>
+                    <td>3</td>
+                    <td>3.8</td>
+                    <td>92</td>
+                    <td>ممتاز منخفض</td>
+                    <td>✔</td>
+                </tr>
+                <tr>
+                    <td>AS122</td>
+                    <td>محاسبة متوسطة</td>
+                    <td>100</td>
+                    <td>50</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>100</td>
+                    <td>ممتاز مرتفع</td>
+                    <td>✔</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function checkData() {
+            const nationalId = document.getElementById("national-id").value;
+            const studentCode = document.getElementById("student-code").value;
+
+            // تحقق من القيم المدخلة
+            if (nationalId === "30407042200171" && studentCode === "27912023100061") {
+                document.getElementById("form").classList.remove("active");
+                document.getElementById("result").classList.add("active");
+            } else {
+                alert("الرقم القومي أو كود الطالب غير صحيح!");
+            }
+        }
+    </script>
+</body>
+</html>
